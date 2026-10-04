@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Arte de compartilhamento do Notchficator com o Mac</title>
+  <link rel="stylesheet" href="../dist/styles.css">
+  <style>
+    html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .card { position: relative; width: 1200px; height: 630px; overflow: hidden; color: #f1f4f3; background: radial-gradient(ellipse at 79% 54%, #7edec419, transparent 47%), radial-gradient(ellipse at 0% 100%, #7edec407, transparent 60%), #101212; }
+    .copy { position: absolute; left: 72px; top: 163px; }
+    .identity { display: flex; align-items: center; gap: 17px; }
+    .symbol { width: 76px; height: 76px; border-radius: 18px; }
+    .wordmark { margin: 0; font-size: 47px; line-height: 1; letter-spacing: -1.8px; font-weight: 650; }
+    .platform { margin: 11px 0 0; color: #a3b2ab; font-size: 12px; letter-spacing: 2.6px; }
+    .copy h1 { margin: 38px 0 0; font-size: 44px; line-height: 1.17; letter-spacing: -1.9px; font-weight: 580; }
+    .copy h1 span { color: #9de5ce; }
+    .benefit { margin: 26px 0 0; font-size: 22px; color: #bac9c1; letter-spacing: -.3px; }
+    .hero-product { position: absolute; left: 590px; top: 163px; width: 1040px; max-width: none; margin: 0; padding: 0 28px; transform: scale(.54); transform-origin: left top; }
+    .desktop-wallpaper { filter: saturate(.8) brightness(.72); }
+    .hero-notch { width: 420px; height: 72px; }
+    .notch-topline { height: 72px; padding: 0 16px; }
+    .mini-preview { width: 93px; height: 53px; }
+    .mini-preview img { width: 100%; height: 100%; object-fit: cover; }
+    .physical-notch { left: 129px; height: 52px; }
+    .audio-bars { gap: 4px; }
+    .audio-bars i { width: 3px; transform: none; }
+    .audio-bars i:nth-child(1) { height: 7px; }
+    .audio-bars i:nth-child(2) { height: 16px; }
+    .audio-bars i:nth-child(3) { height: 26px; }
+    .audio-bars i:nth-child(4) { height: 20px; }
+    .audio-bars i:nth-child(5) { height: 28px; }
+    .audio-bars i:nth-child(6) { height: 13px; }
+    .audio-bars i:nth-child(7) { height: 6px; }
+    .note-caret { opacity: 1; }
+    .illustration-label { position: absolute; left: 590px; top: 515px; width: 562px; text-align: center; font-size: 12px; color: #82958c; }
+    .line { position: absolute; bottom: 70px; left: 66px; right: 66px; height: 1px; background: linear-gradient(90deg, transparent, #7edec42e, transparent); }
+    .domain { position: absolute; right: 66px; bottom: 28px; color: #a9cbbc; font-size: 19px; letter-spacing: .5px; }
+  </style>
+</head>
+<body>
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-apple" viewBox="0 0 24 24"><path d="M16.6 12.8c0-2 1.6-3.1 1.7-3.2-1-1.5-2.5-1.7-3.1-1.7-1.3-.2-2.6.8-3.2.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.8.8-3.5 2-1.5 2.5-.4 6.3 1 8.3.7 1 1.5 2.1 2.5 2 1-.1 1.4-.7 2.7-.7s1.6.7 2.8.7c1.1 0 1.8-1 2.5-2 .8-1.2 1.2-2.4 1.2-2.5-.1 0-2.2-.9-2.2-2.9ZM14.6 6.6c.6-.8 1.1-1.8 1-2.9-1 .1-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.8 1 .1 2.1-.5 2.8-1.4Z" fill="currentColor"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M11 4 6 8H3v8h3l5 4V4Zm4 4a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+  </svg>
+  <main class="card">
+    <div class="copy">
+      <div class="identity">
+        <img class="symbol" src="../dist/assets/notchficator-icon.png" alt="Ícone oficial do Notchficator">
+        <div><p class="wordmark">Notchficator</p><p class="platform">NATIVO PARA macOS</p></div>
+      </div>
+      <h1>Seu vídeo continua.<br><span>Seu trabalho também.</span></h1>
+      <p class="benefit">Mini vídeo ao vivo no notch.</p>
+    </div>
+    <div class="hero-product" aria-label="Demonstração ilustrativa do Notchficator em um MacBook">
+      <div class="device-glow"></div>
+      <div class="mac-display">
+        <div class="desktop-wallpaper"></div>
+        <div class="mac-menubar"><div><svg><use href="#i-apple"/></svg><b>Notas</b><span>Arquivo</span><span>Editar</span><span>Visualizar</span></div><div><svg><use href="#i-volume"/></svg><span class="menu-wifi">◔</span><span class="menu-battery"></span><span>09:41</span></div></div>
+        <div class="hero-notch notch-shell">
+          <div class="notch-topline">
+            <div class="mini-preview"><img src="../dist/assets/coast.jpg" alt="Mini vídeo entre montanhas e mar"></div>
+            <span class="physical-notch"><span class="camera-dot"></span></span>
+            <div class="audio-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+        <div class="notes-window">
+          <div class="window-topbar"><div class="traffic-lights"><i></i><i></i><i></i></div><span>Um pouco de espaço para criar</span><span class="window-more">···</span></div>
+          <div class="notes-sidebar"><span class="sidebar-label">SUAS IDEIAS</span><div class="sidebar-item active">O próximo capítulo<span>Hoje · Uma ideia de cada vez</span></div><div class="sidebar-item">Coisas que inspiram<span>Ontem · Para guardar</span></div><div class="sidebar-item">Sem pressa<span>Segunda · Notas do dia</span></div><div class="sidebar-bottom">3 notas</div></div>
+          <div class="note-content"><span class="note-date">Hoje, 09:41</span><h3>O próximo capítulo.</h3><p>Uma ideia de cada vez.<br>Um pouco de espaço para criar.</p><div class="note-task"><span class="task-check">✓</span> Encontrar uma nova perspectiva</div><div class="note-task"><span class="task-circle"></span> Deixar as ideias acontecerem</div><div class="note-task"><span class="task-circle"></span> Fazer algo que vale a pena</div><span class="note-caret"></span></div>
+        </div>
+        <div class="desktop-status"><span class="status-dot"></span><span>Seu vídeo, em segundo plano.</span></div>
+        <div class="mac-dock"><i class="dock-finder">☺</i><i class="dock-notes"></i><i class="dock-browser">◉</i><span></span><div class="dock-settings"><img src="../dist/assets/notchficator-icon.png" alt="Notchficator" width="35" height="35"></div></div>
+      </div>
+      <div class="mac-base"><div></div></div>
+    </div>
+    <p class="illustration-label">Demonstração ilustrativa</p>
+    <div class="line"></div>
+    <span class="domain">notchficator.app</span>
+  </main>
+</body>
+</html>

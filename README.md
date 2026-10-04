@@ -20,6 +20,10 @@ O site público usa GitHub Pages, com publicação automática a partir de `main
 
 DNS: quatro registros A para `@`: `185.199.108.153`, `185.199.109.153`, `185.199.110.153` e `185.199.111.153`. O CNAME de `www` aponta para `benfic4rthur.github.io`.
 
+## Prévia de compartilhamento
+
+O HTML inclui Open Graph e Twitter Card estáticos, com título, descrição, URL canônica e uma imagem horizontal de 1200 × 630 pixels. A arte usa o ícone oficial e a mesma reconstrução do Mac da página, identificada como demonstração ilustrativa. O arquivo publicado é `dist/assets/notchficator-share-v1.png`; o layout editável fica em `scripts/share-card.html`. Para gerar novamente, abra esse HTML em um navegador com viewport 1200 × 630, aguarde as imagens e capture somente essa área em PNG. Use um novo nome de arquivo e atualize as tags de imagem quando substituir a arte, pois serviços de compartilhamento podem manter a prévia anterior em cache.
+
 ## Demonstrações
 
 As cenas são reconstruções ilustrativas, identificadas na página. O mini vídeo é um loop original de paisagem, sem áudio. Ao clicar na prévia, a janela de origem aparece e a mídia do notch se recolhe. Ao voltar ao trabalho, ela reaparece. O player complementar expande ao passar o mouse ou tocar, e oferece anterior, próximo, pausa e progresso, com troca entre vídeo e três músicas fornecidas pelo usuário. Avisos de volume, brilho, AirPods, bateria e Foco aparecem por alguns segundos e também podem ser acionados pelo botão Avisos. O site respeita a preferência do sistema por movimento reduzido.
