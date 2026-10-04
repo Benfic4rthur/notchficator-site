@@ -4,7 +4,7 @@
   // Desencoraja a inspeção casual; o código entregue ao navegador continua público.
   const notice = document.querySelector("#inspection-notice");
   if (!notice) return;
-  const message = "Ah, para de vir mexer aqui, ô metida hacker. 😅";
+  const message = "Ah, para de vir mexer aqui, ô metido(a) hacker. 😅";
   let dismissalTimer;
   let previousFocus;
 
