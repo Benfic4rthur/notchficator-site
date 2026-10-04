@@ -19,7 +19,7 @@
   const configuredTracks = window.NOTCHFICATOR_CONFIG?.tracks || [];
   const tracks = [
     { title: "Entre montanhas e mar", subtitle: "Vídeo de demonstração", cover: "assets/coast.jpg", kind: "video", duration: 8 },
-    ...configuredTracks.map(track => ({ ...track, kind: "music", duration: 60 }))
+    ...configuredTracks.map(track => ({ ...track, kind: "music", duration: track.duration || 60 }))
   ];
   let pinned = false;
   let playing = !motionPreference.matches;
