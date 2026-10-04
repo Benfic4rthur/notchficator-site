@@ -17,6 +17,9 @@
   const announcement = document.querySelector("#demo-announcement");
   const progress = document.querySelector("#demo-progress");
   const downloadDialog = document.querySelector("#download-dialog");
+  const settingsDialog = document.querySelector("#settings-dialog");
+  const settingsTrigger = document.querySelector("#dock-settings");
+  const smallScreen = window.matchMedia("(max-width: 700px)");
   const configuredTracks = window.NOTCHFICATOR_CONFIG?.tracks || [];
   const tracks = [
     { title: "Entre montanhas e mar", subtitle: "Vídeo de demonstração", cover: "assets/coast.jpg", kind: "video", duration: 8 },
@@ -165,10 +168,10 @@
     }
   }
   const notices = [
-    { icon:"volume", title:"Volume", description:"Ajuste no notch", value:"65%", level:65 },
+    { icon:"volume", title:"Volume", description:"Ajuste no notch", value:"100%", level:100, layout:"hud" },
     { icon:"airpods", title:"AirPods Pro", description:"Conectado", value:"", level:null, layout:"device" },
     { icon:"airpods", title:"AirPods Pro", description:"Desconectado", value:"", level:null, layout:"device" },
-    { icon:"brightness", title:"Brilho", description:"Ajuste no notch", value:"80%", level:80 },
+    { icon:"brightness", title:"Brilho", description:"Ajuste no notch", value:"100%", level:100, layout:"hud" },
     { icon:"battery-level", title:"Bateria", description:"Alimentação desconectada", value:"80%", level:null, layout:"battery" },
     { icon:"lightning", title:"Bateria", description:"Alimentação conectada", value:"80%", level:null, layout:"battery" },
     { icon:"focus-on", title:"Foco", description:"Ativado", value:"On", level:null, layout:"focus" },
@@ -176,20 +179,21 @@
   ];
   function clearNotice() {
     clearTimeout(noticeTimer);
-    heroNotch.classList.remove("showing-notice", "device-notice", "focus-notice", "battery-notice");
+    heroNotch.classList.remove("showing-notice", "device-notice", "focus-notice", "battery-notice", "hud-notice");
     const button = document.querySelector('[data-demo="notices"]');
     button.classList.remove("active");
     button.setAttribute("aria-pressed", "false");
   }
   function showNotice(manual = false) {
     if (sourceActive) { if (!manual) return; setSourceVisible(false); }
-    if (!manual && (heroNotch.matches(":hover") || heroNotch.contains(document.activeElement) || downloadDialog.open)) return;
+    if (!manual && (heroNotch.matches(":hover") || heroNotch.contains(document.activeElement) || downloadDialog.open || settingsDialog?.open)) return;
     clearNotice();
     heroNotch.classList.remove("is-expanded");
     const notice = notices[noticeIndex++ % notices.length];
     heroNotch.classList.toggle("device-notice", notice.layout === "device");
     heroNotch.classList.toggle("focus-notice", notice.layout === "focus");
     heroNotch.classList.toggle("battery-notice", notice.layout === "battery");
+    heroNotch.classList.toggle("hud-notice", notice.layout === "hud");
     const content = document.querySelector(".notch-notice-content");
     content.querySelector("use").setAttribute("href", `#i-${notice.icon}`);
     content.querySelector("strong").textContent = notice.title;
@@ -304,6 +308,92 @@
     else featureVideo.play().catch(() => {});
   }
   manageFeatureVideo();
+
+  if (settingsDialog) {
+    function openSettings() {
+      if (settingsDialog.open) return;
+      clearNotice();
+      heroNotch.classList.remove("is-expanded");
+      if (smallScreen.matches) settingsDialog.showModal();
+      else settingsDialog.show();
+      settingsTrigger.setAttribute("aria-expanded", "true");
+      requestAnimationFrame(updateSettingsScrollbar);
+      announcement.textContent = "Prévia ilustrativa das configurações do Notchficator. As opções alteram apenas esta janela.";
+    }
+    const settingsScroll = settingsDialog.querySelector(".settings-scroll");
+    const settingsTrack = settingsDialog.querySelector(".settings-scroll-track");
+    function updateSettingsScrollbar() {
+      const max = settingsScroll.scrollHeight - settingsScroll.clientHeight;
+      settingsTrack.hidden = max <= 0;
+      if (max <= 0) return;
+      const height = settingsTrack.clientHeight;
+      const thumb = Math.min(height, Math.max(40, height * settingsScroll.clientHeight / settingsScroll.scrollHeight));
+      settingsTrack.style.setProperty("--thumb-size", `${thumb}px`);
+      settingsTrack.style.setProperty("--thumb-offset", `${max > 0 ? settingsScroll.scrollTop / max * (height - thumb) : 0}px`);
+      settingsTrack.hidden = max <= 0;
+    }
+    settingsScroll.addEventListener("scroll", updateSettingsScrollbar, { passive: true });
+    new ResizeObserver(updateSettingsScrollbar).observe(settingsScroll);
+    let scrollDrag;
+    settingsTrack.addEventListener("pointerdown", event => {
+      const bounds = settingsTrack.getBoundingClientRect();
+      const thumb = settingsTrack.firstElementChild.getBoundingClientRect();
+      const max = settingsScroll.scrollHeight - settingsScroll.clientHeight;
+      const travel = bounds.height - thumb.height;
+      if (travel <= 0) return;
+      if (event.target === settingsTrack) settingsScroll.scrollTop = Math.max(0, Math.min(1, (event.clientY - bounds.top - thumb.height / 2) / travel)) * max;
+      scrollDrag = { y: event.clientY, position: settingsScroll.scrollTop, scale: max / travel };
+      settingsTrack.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    });
+    settingsTrack.addEventListener("pointermove", event => {
+      if (scrollDrag) settingsScroll.scrollTop = scrollDrag.position + (event.clientY - scrollDrag.y) * scrollDrag.scale;
+    });
+    const stopScrollDrag = () => { scrollDrag = null; };
+    settingsTrack.addEventListener("pointerup", stopScrollDrag);
+    settingsTrack.addEventListener("pointercancel", stopScrollDrag);
+    settingsTrack.addEventListener("lostpointercapture", stopScrollDrag);
+    settingsTrigger.addEventListener("click", openSettings);
+    settingsDialog.querySelectorAll("[data-settings-close]").forEach(button => button.addEventListener("click", () => settingsDialog.close()));
+    settingsDialog.addEventListener("close", () => {
+      if (settingsDialog.open) return;
+      settingsTrigger.setAttribute("aria-expanded", "false");
+      settingsTrigger.focus({ preventScroll: true });
+    });
+    settingsDialog.addEventListener("keydown", event => {
+      if (event.key === "Escape") { event.preventDefault(); settingsDialog.close(); }
+    });
+    settingsDialog.querySelectorAll("[data-setting]").forEach(button => button.addEventListener("click", () => {
+      button.setAttribute("aria-checked", String(button.getAttribute("aria-checked") !== "true"));
+    }));
+    settingsDialog.querySelectorAll("[data-settings-view]").forEach(button => button.addEventListener("click", () => {
+      settingsDialog.querySelectorAll("[data-settings-view]").forEach(option => option.setAttribute("aria-pressed", String(option === button)));
+    }));
+    settingsDialog.querySelectorAll("[data-preview-action]").forEach(button => button.addEventListener("click", () => {
+      const feedback = settingsDialog.querySelector("#settings-feedback");
+      feedback.textContent = "Esta é uma prévia. As autorizações e os ajustes são feitos no aplicativo instalado.";
+    }));
+    smallScreen.addEventListener("change", () => {
+      if (!settingsDialog.open) return;
+      const scroll = settingsDialog.querySelector(".settings-scroll");
+      const position = scroll.scrollTop;
+      settingsDialog.close();
+      openSettings();
+      scroll.scrollTop = position;
+    });
+
+  }
+  const installationCommand = window.NOTCHFICATOR_CONFIG?.installationCommand?.trim();
+  if (installationCommand) {
+    document.querySelector(".installation-command").hidden = false;
+    document.querySelector("#installation-release-description").textContent = "Use o comando abaixo para liberar a cópia do Notchficator baixada desta página.";
+    document.querySelector("#installation-command-text").textContent = installationCommand;
+    document.querySelector("#copy-installation-command").addEventListener("click", async () => {
+      const status = document.querySelector("#installation-copy-status");
+      try { await navigator.clipboard.writeText(installationCommand); status.textContent = "Comando copiado."; }
+      catch { status.textContent = "Selecione o comando e copie manualmente."; }
+    });
+  }
 
   const downloadUrl = safeUrl(window.NOTCHFICATOR_CONFIG?.downloadUrl);
   document.querySelectorAll("[data-download]").forEach(link => {

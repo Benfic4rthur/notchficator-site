@@ -12,6 +12,10 @@ Em `dist/config.js`, preencha `downloadUrl` com o endereço HTTPS real do instal
 
 Enquanto o endereço estiver vazio, os botões abrem uma mensagem informando que o instalador ainda não está disponível. Nenhum link de download é inventado e nenhum e-mail é coletado.
 
+## Instalação
+
+A seção de download inclui instruções expansíveis e informa que esta versão é de um desenvolvedor independente e ainda não tem assinatura da Apple. Quando o comando real de instalação for fornecido e validado, preencha `installationCommand` em `dist/config.js`; ele será exibido como texto com um botão para copiar. O site não executa comandos.
+
 ## Hospedagem
 
 O site pode ser servido por qualquer hospedagem estática usando `dist/`. A primeira publicação de revisão usa Sites com acesso privado. O domínio exibido é Notchficator.app; conectar esse domínio e torná-lo público são configurações de lançamento separadas.
@@ -19,6 +23,8 @@ O site pode ser servido por qualquer hospedagem estática usando `dist/`. A prim
 ## Demonstrações
 
 As cenas são reconstruções ilustrativas, identificadas na página. O mini vídeo é um loop original de paisagem, sem áudio. Ao clicar na prévia, a janela de origem aparece e a mídia do notch se recolhe. Ao voltar ao trabalho, ela reaparece. O player complementar expande ao passar o mouse ou tocar, e oferece anterior, próximo, pausa e progresso, com troca entre vídeo e três músicas fornecidas pelo usuário. Avisos de volume, brilho, AirPods, bateria e Foco aparecem por alguns segundos e também podem ser acionados pelo botão Avisos. O site respeita a preferência do sistema por movimento reduzido.
+
+O ícone do Notchficator na dock abre uma reconstrução das preferências, com cabeçalho e rodapé fixos, conteúdo rolável, switches e seleção Capa/Vídeo ao vivo. Essas opções só mudam o estado visual da prévia; não alteram o computador nem solicitam autorizações reais. A janela é identificada como demonstração ilustrativa.
 
 A aparência do notch é baseada nas referências do aplicativo enviadas pelo usuário. As capturas originais com conteúdo pessoal não são publicadas.
 

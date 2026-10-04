@@ -73,19 +73,90 @@
             <div class="source-music" hidden><img src="assets/cover-tide.svg" width="130" height="130" alt="Capa ilustrativa"><strong>Maré calma</strong><span>Música de demonstração</span></div>
             <button class="work-button" id="work-button">Voltar ao trabalho <svg><use href="#i-arrow"/></svg></button>
           </div>
+          <dialog id="settings-dialog" class="settings-window" aria-labelledby="settings-title" aria-describedby="settings-preview-label">
+            <div class="settings-titlebar">
+              <div class="settings-traffic-lights"><button type="button" class="settings-close" data-settings-close aria-label="Fechar prévia das configurações"></button><span></span><span></span></div>
+              <span>Notchficator</span>
+            </div>
+            <header class="settings-header">
+              <div class="settings-brand"><img src="assets/notchficator-icon.png" width="40" height="40" alt=""><div><h2 id="settings-title">Notchficator</h2><p>Os pequenos momentos do Mac, no notch.</p></div><span class="settings-version">1.0.9</span></div>
+              <p class="settings-preview-label" id="settings-preview-label">Prévia das configurações · Demonstração ilustrativa</p>
+              <div class="settings-feedback" id="settings-feedback" role="status" aria-live="polite"></div>
+            </header>
+            <div class="settings-scroll-wrap"><div class="settings-scroll" role="region" aria-label="Opções da prévia de configurações" tabindex="0">
+              <section class="settings-section" aria-labelledby="settings-general-title">
+                <h3 id="settings-general-title">Geral</h3>
+                <div class="settings-group">
+                  <div class="settings-row"><button type="button" class="settings-action" data-preview-action="authorizations">Liberar autorizações</button></div>
+                  <div class="settings-row"><span id="settings-enabled-label">Ativar Notchficator</span><button type="button" class="settings-switch" role="switch" aria-checked="true" aria-labelledby="settings-enabled-label" data-setting="enabled"></button></div>
+                  <div class="settings-row"><span id="settings-startup-label">Iniciar com o macOS</span><button type="button" class="settings-switch" role="switch" aria-checked="true" aria-labelledby="settings-startup-label" data-setting="startup"></button></div>
+                </div>
+              </section>
+              <section class="settings-section" aria-labelledby="settings-controls-title">
+                <h3 id="settings-controls-title">Controles e notificações</h3>
+                <div class="settings-group">
+                  <p class="settings-status"><span aria-hidden="true">✓</span> Permissão reconhecida</p>
+                  <div class="settings-row"><span id="settings-volume-label">Volume somente no notch</span><button type="button" class="settings-switch" role="switch" aria-checked="true" aria-labelledby="settings-volume-label" data-setting="volume"></button></div>
+                  <div class="settings-row"><span id="settings-brightness-label">Brilho no notch</span><button type="button" class="settings-switch" role="switch" aria-checked="true" aria-labelledby="settings-brightness-label" data-setting="brightness"></button></div>
+                  <p class="settings-help">Acesso às teclas autorizado. Controles compatíveis aparecem no notch.</p>
+                  <p class="settings-help">Compatibilidade com LUM4 em validação: brilho controlado pelo Notchficator e teclas encaminhadas ao LUM4. Confira se o boost continua funcionando e se aparece somente o aviso do notch.</p>
+                  <p class="settings-help">Volume e brilho aparecem ao ajustar e somem após 1,5 segundo. Brilho controla a tela interna compatível.</p>
+                  <div class="settings-row"><span id="settings-notifications-label">Notificações de aplicativos</span><button type="button" class="settings-switch" role="switch" aria-checked="true" aria-labelledby="settings-notifications-label" data-setting="notifications"></button></div>
+                  <p class="settings-help">Observando novos banners visíveis</p>
+                  <p class="settings-help">Apresenta as novas notificações visíveis do macOS. Prévias ocultas e notificações silenciadas pelo sistema continuam protegidas. Os banners originais continuam disponíveis.</p>
+                  <div class="settings-row"><button type="button" class="settings-action" data-preview-action="notification">Enviar notificação de teste</button></div>
+                </div>
+              </section>
+              <section class="settings-section" aria-labelledby="settings-media-title">
+                <h3 id="settings-media-title">Mídia</h3>
+                <div class="settings-group">
+                  <div class="settings-row"><span id="settings-media-label">Mostrar mídia no notch</span><button type="button" class="settings-switch" role="switch" aria-checked="true" aria-labelledby="settings-media-label" data-setting="media"></button></div>
+                  <div class="settings-row"><span id="settings-waves-label">Ondas sonoras reais</span><button type="button" class="settings-switch" role="switch" aria-checked="true" aria-labelledby="settings-waves-label" data-setting="audio-waves"></button></div>
+                  <p class="settings-help">Analisando o áudio do aplicativo em reprodução.</p>
+                  <p class="settings-help">As barras respondem aos graves, médios e agudos do aplicativo em reprodução. Autorize o áudio do sistema quando solicitado. Não usa o microfone nem salva gravações. Se várias abas do mesmo navegador tocarem juntas, seus sons podem se misturar.</p>
+                  <div class="settings-row settings-actions"><button type="button" class="settings-action" data-preview-action="reconnect-audio">Reconectar áudio</button><button type="button" class="settings-text-action" data-preview-action="audio-settings">Ajustes de áudio...</button></div>
+                  <p class="settings-help">Sem áudio disponível ou sem autorização, as barras ficam paradas.</p>
+                  <p class="settings-help">Reprodução real de Microsoft Edge.</p>
+                  <p class="settings-help">Abra o YouTube Music criado pelo Safari para mostrar sua reprodução.</p>
+                  <div class="settings-row settings-view-row"><span id="settings-view-label">À esquerda do notch</span><div class="settings-segment" role="group" aria-labelledby="settings-view-label"><button type="button" data-settings-view="cover" aria-pressed="true">Capa</button><button type="button" data-settings-view="video" aria-pressed="false">Vídeo ao vivo</button></div></div>
+                  <p class="settings-help">Clique na capa ou no vídeo para abrir a janela de origem. Passe o mouse pelo notch para ver os controles.</p>
+                  <p class="settings-help">Autorize os players que você usa para mostrar capa, reprodução e tempo. Os controles disponíveis dependem de cada player.</p>
+                  <div class="settings-player"><div><strong>Microsoft Edge</strong><span class="settings-player-connected" aria-label="Conectado nesta prévia">✓</span></div><p>Automação autorizada; páginas com vídeo ou áudio podem aparecer no notch.</p></div>
+                  <div class="settings-player"><div><strong>Safari</strong></div><p>Abra Safari para conectar.</p></div>
+                  <div class="settings-player"><div><strong>Música</strong></div><p>Abra Música para conectar.</p></div>
+                  <div class="settings-row"><button type="button" class="settings-action" data-preview-action="verify-players">Verificar players abertos</button></div>
+                </div>
+              </section>
+              <section class="settings-section" aria-labelledby="settings-events-title">
+                <h3 id="settings-events-title">Eventos do Mac</h3>
+                <div class="settings-group">
+                  <div class="settings-row"><span id="settings-focus-label">Mudanças de Foco</span><button type="button" class="settings-switch" role="switch" aria-checked="true" aria-labelledby="settings-focus-label" data-setting="focus"></button></div>
+                  <p class="settings-help">Foco desativado</p>
+                  <p class="settings-help">Mostra um aviso temporário ao ativar ou desativar o Foco, sem interromper a reprodução.</p>
+                  <div class="settings-row"><span id="settings-events-volume-label">Volume</span><button type="button" class="settings-switch" role="switch" aria-checked="true" aria-labelledby="settings-events-volume-label" data-setting="event-volume"></button></div>
+                  <div class="settings-row"><span id="settings-battery-label">Bateria e energia</span><button type="button" class="settings-switch" role="switch" aria-checked="true" aria-labelledby="settings-battery-label" data-setting="battery"></button></div>
+                  <div class="settings-row"><span id="settings-devices-label">Dispositivos de áudio</span><button type="button" class="settings-switch" role="switch" aria-checked="true" aria-labelledby="settings-devices-label" data-setting="devices"></button></div>
+                  <p class="settings-help">Observando dispositivos e saída de áudio</p>
+                  <p class="settings-help">Observando conexões Bluetooth dos dispositivos de áudio</p>
+                </div>
+              </section>
+            </div>
+            <div class="settings-scroll-track" aria-hidden="true"><span></span></div></div>
+            <footer class="settings-footer"><p class="settings-notch-status">Notch físico detectado · 220 × 38 pt</p><div><p>Dados processados no Mac, sem microfone nem gravações salvas.</p><button type="button" class="settings-action" data-settings-close>Ocultar para a barra de menus</button></div></footer>
+          </dialog>
           <div class="desktop-status"><span class="status-dot"></span><span id="desktop-status-text">Seu vídeo, em segundo plano.</span></div>
-          <div class="mac-dock" aria-hidden="true"><i class="dock-finder">☺</i><i class="dock-notes"></i><i class="dock-browser">◉</i><span></span><img src="assets/notchficator-icon.png" alt="" width="35" height="35"></div>
+          <div class="mac-dock"><i class="dock-finder" aria-hidden="true">☺</i><i class="dock-notes" aria-hidden="true"></i><i class="dock-browser" aria-hidden="true">◉</i><span aria-hidden="true"></span><button id="dock-settings" class="dock-settings" aria-label="Explorar as configurações do Notchficator" aria-controls="settings-dialog" aria-expanded="false" aria-haspopup="dialog" title="Configurações do Notchficator"><img src="assets/notchficator-icon.png" alt="" width="35" height="35"></button></div>
         </div>
         <div class="mac-base" aria-hidden="true"><div></div></div>
       </div>
-      <div class="demo-caption"><span>Demonstração ilustrativa</span><span class="caption-separator">·</span><span>Clique na prévia para ver a origem</span></div>
+      <div class="demo-caption"><span>Demonstração ilustrativa</span><span class="caption-separator">·</span><span>Clique na prévia ou no ícone do app na dock</span></div>
       <div class="demo-options" aria-label="Escolha uma demonstração"><button class="demo-option active" data-demo="video" aria-pressed="true">Vídeo</button><button class="demo-option" data-demo="music" aria-pressed="false">Música</button><button class="demo-option" data-demo="notices" aria-pressed="false">Avisos</button></div>
     </section>
     <section class="video-feature shell" aria-labelledby="video-feature-title">
       <div class="video-feature-copy">
-        <div class="video-feature-eyebrow">O DIFERENCIAL ESTÁ NO MINI VÍDEO</div>
-        <h2 id="video-feature-title">Um olho no vídeo.<br>O resto, no seu trabalho.</h2>
-        <p>Continue ouvindo e veja o que está acontecendo pelo mini vídeo no notch. Você trabalha em outro app, sem precisar voltar à janela do vídeo a cada momento.</p>
+        <div class="video-feature-eyebrow">O PRINCIPAL DIFERENCIAL</div>
+        <h2 id="video-feature-title"><span>Mini vídeo ao vivo.</span><br>Dentro do seu notch.</h2>
+        <p>Continue ouvindo e acompanhe o que acontece com um olhar. O mini vídeo fica no notch enquanto você trabalha em outro app.</p>
         <span class="video-feature-note">Em fontes compatíveis, até com o navegador minimizado.</span>
       </div>
       <figure class="video-feature-demo">
@@ -99,6 +170,7 @@
             <span class="video-feature-camera"></span>
             <div class="video-feature-bars"><i></i><i></i><i></i><i></i><i></i></div>
           </div>
+          <div class="video-feature-callout"><span></span>Seu vídeo continua aqui <svg><use href="#i-down"/></svg></div>
           <div class="video-feature-document">
             <div class="video-feature-document-bar"><span></span><span></span><span></span><b>Uma ideia de cada vez</b></div>
             <div class="video-feature-document-body"><small>ESPAÇO PARA CRIAR</small><strong>Você segue por aqui.</strong><div class="video-feature-line"></div><div class="video-feature-line"></div><div class="video-feature-line"></div></div>
@@ -137,6 +209,20 @@
     <div class="footer-top"><div class="footer-brand-block"><a class="brand" href="#"><img src="assets/notchficator-icon.png" width="32" height="32" alt=""><span>Notchficator</span></a><p>Os pequenos momentos do Mac, no notch.</p></div><a class="download-button footer-download" data-download href="#download">Baixar para Mac <svg><use href="#i-arrow"/></svg></a></div>
     <div class="requirements"><span>Apple Silicon</span><span>Notch físico</span><span>macOS 13 ou posterior</span></div>
     <p class="compatibility-note">A compatibilidade varia conforme a fonte, o conteúdo e as permissões do macOS.</p>
+    <div class="installation-intro">
+      <p>Desenvolvido de forma independente. Esta versão ainda não possui assinatura da Apple, e o macOS pode bloquear a primeira abertura.</p>
+      <details class="installation-guide" id="como-instalar">
+        <summary>Como instalar no Mac <span>+</span></summary>
+        <div class="installation-content">
+          <ol>
+            <li><strong>Baixe pela página oficial.</strong> Depois de baixar, coloque o Notchficator na pasta Aplicativos.</li>
+            <li><strong>Autorize a primeira abertura.</strong><p id="installation-release-description">O macOS pode manter o app em quarentena por ele ter sido baixado da internet. O comando para liberar esta versão será disponibilizado junto ao instalador.</p><div class="installation-command" hidden><p>Abra o Terminal, cole o comando abaixo e pressione Enter.</p><div class="installation-code"><pre><code id="installation-command-text"></code></pre><button id="copy-installation-command" aria-label="Copiar comando de instalação">Copiar</button></div><p id="installation-copy-status" role="status"></p></div></li>
+            <li><strong>Abra o Notchficator.</strong> As permissões dos recursos que você escolher usar serão solicitadas pelo próprio aplicativo.</li>
+          </ol>
+          <p class="installation-help">Confira a origem do download antes de autorizar o aplicativo. <a href="https://support.apple.com/pt-br/102445" target="_blank" rel="noopener noreferrer">Entenda o aviso do macOS <svg><use href="#i-arrow"/></svg></a></p>
+        </div>
+      </details>
+    </div>
     <details class="compatibility-details"><summary>Compatibilidade e privacidade <span>+</span></summary><div class="compatibility-content"><p>O mini vídeo depende do navegador, player e conteúdo. A prévia de YouTube Music aberto como aplicativo pelo Safari ainda não está disponível.</p><p>As barras de áudio reais são opcionais, exigem macOS 14.2 ou posterior e autorização do macOS. A análise de áudio não usa o microfone, e a prévia de vídeo não salva gravações.</p><p>Os controles disponíveis dependem da fonte. Ao voltar à janela e à aba do vídeo, a mídia no notch se esconde; ao trocar de app ou minimizar a janela, ela reaparece. As notificações acompanham os banners visíveis que o macOS disponibiliza.</p><p>O Notchficator funciona pela barra de menus, mantém suas preferências e pode iniciar com o macOS.</p></div></details>
     <div class="footer-bottom"><span>Notchficator.app</span><span>Feito para fazer parte do seu Mac.</span></div>
   </footer>
