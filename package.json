@@ -5,7 +5,7 @@
   "description": "Site do Notchficator, em português brasileiro.",
   "scripts": {
     "dev": "node serve.mjs",
-    "check": "node --check dist/app.js && node --check dist/config.js",
+    "check": "node --check dist/app.js && node --check dist/config.js && node --check dist/inspection-guard.js",
     "build": "npm run check"
   }
 }

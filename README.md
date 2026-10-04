@@ -40,6 +40,12 @@ O botão de som na barra superior do Mac da demonstração abre um controle de v
 
 A apresentação começa no mini vídeo ilustrativo. A navegação também inclui as três músicas fornecidas, que podem ser selecionadas pelo botão Música ou pelo próximo do player.
 
+## Aviso de inspeção
+
+`dist/inspection-guard.js` intercepta atalhos comuns de ferramentas de desenvolvedor, código-fonte e salvamento da página, além do menu de contexto fora de links, campos, controles e do comando de instalação. Também impede arrastar imagens e vídeos. A tentativa mostra um aviso dispensável com a frase solicitada; a mesma mensagem aparece no console. Player, volume, rolagem, seleção de texto e cópia do comando continuam disponíveis. O aviso não toma o foco e funciona dentro das configurações no celular.
+
+Esses bloqueios desencorajam inspeção casual. Não são uma barreira de segurança nem escondem o código público: menus do navegador, ferramentas externas ou JavaScript desativado podem contorná-los. Não há detecção por tamanho da janela, pausas de debugger, redirecionamentos ou fechamento forçado da página.
+
 ## Repositório
 
 Fonte completa em https://github.com/Benfic4rthur/notchficator-site. A publicação é automática ao atualizar `main`. O projeto não exige instalação de dependências para servir a página.

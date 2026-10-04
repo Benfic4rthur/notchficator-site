@@ -27,8 +27,10 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/notchficator-icon.png">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="inspection-guard.css">
   <script src="config.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="inspection-guard.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -258,5 +260,10 @@
   <audio id="demo-audio" preload="none" hidden></audio>
   <div class="sr-only" id="demo-announcement" role="status" aria-live="polite"></div>
   <noscript><p class="noscript-note">As demonstrações interativas precisam de JavaScript. O link do instalador ainda não foi disponibilizado.</p></noscript>
+  <div class="inspection-notice" id="inspection-notice" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <img src="assets/notchficator-icon.png" width="38" height="38" alt="">
+    <p>Ah, para de vir mexer aqui, ô metida hacker. 😅</p>
+    <button type="button" aria-label="Fechar aviso"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
 </body>
 </html>
