@@ -6,11 +6,9 @@ Site responsivo em português brasileiro, com ícone oficial, vídeo ilustrativo
 
 Execute `npm run dev` e abra http://127.0.0.1:4173. Para conferir a sintaxe, execute `npm run check`.
 
-## Ativar o download
+## Download da última versão
 
-Em `dist/config.js`, preencha `downloadUrl` com o endereço HTTPS real do instalador. Todos os botões passam a apontar para esse endereço. Também é possível hospedar o instalador em `dist/` e usar seu caminho, como `/downloads/Notchficator.dmg`, quando o arquivo real existir.
-
-Enquanto o endereço estiver vazio, os botões abrem uma mensagem informando que o instalador ainda não está disponível. Nenhum link de download é inventado e nenhum e-mail é coletado.
+Os botões usam o endereço real `https://github.com/Benfic4rthur/notchficator-Releases/releases/latest/download/Notchficator-Instalador.dmg`. O GitHub redireciona para o instalador da última release publicada. Cada nova release deve incluir o asset com o mesmo nome `Notchficator-Instalador.dmg`, além de eventuais arquivos com a versão no nome. A configuração fica em `dist/config.js`.
 
 ## Instalação
 
@@ -18,7 +16,9 @@ A seção de download inclui instruções expansíveis e informa que esta versã
 
 ## Hospedagem
 
-O site pode ser servido por qualquer hospedagem estática usando `dist/`. A primeira publicação de revisão usa Sites com acesso privado. O domínio exibido é Notchficator.app; conectar esse domínio e torná-lo público são configurações de lançamento separadas.
+O site público usa GitHub Pages, com publicação automática a partir de `main` pela ação `.github/workflows/pages.yml`. O workflow confere o JavaScript e publica apenas `dist/`. O domínio personalizado configurado é `notchficator.app`, com HTTPS e DNS mantido na Hostinger.
+
+DNS: quatro registros A para `@`: `185.199.108.153`, `185.199.109.153`, `185.199.110.153` e `185.199.111.153`. O CNAME de `www` aponta para `benfic4rthur.github.io`.
 
 ## Demonstrações
 
@@ -38,4 +38,4 @@ A apresentação começa no mini vídeo ilustrativo. A navegação também inclu
 
 ## Repositório
 
-Fonte completa em https://github.com/Benfic4rthur/notchficator-site. Na hospedagem escolhida, publique o diretório `dist/`. O projeto não exige instalação de dependências para servir a página. O domínio Notchficator.app pode ser conectado nessa hospedagem pelo proprietário.
+Fonte completa em https://github.com/Benfic4rthur/notchficator-site. A publicação é automática ao atualizar `main`. O projeto não exige instalação de dependências para servir a página.
