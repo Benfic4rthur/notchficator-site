@@ -32,7 +32,7 @@ A aparência do notch é baseada nas referências do aplicativo enviadas pelo us
 
 Mountain Pulse, Sunlit Sway e Morning Ripples foram integradas com suas capas originais, extraídas dos MP3. Os arquivos completos permanecem em `dist/assets/`. A configuração está em `dist/config.js`. Para cada faixa, preencha `title`, `artist`, `cover` e `audioUrl`. Hospede os MP3 em `dist/assets/` e use caminhos como `assets/minha-musica.mp3`. O site mede a duração real, permite buscar no progresso, pausar e trocar de faixa. As músicas só começam depois de um clique em play; a troca de faixa mantém a reprodução depois desse consentimento inicial. Antes dos arquivos chegarem, a interface identifica as capas como prévias sem áudio. Use apenas músicas com autorização de uso no site.
 
-O volume das músicas fica fixo em 1% do volume atual do aparelho. Não há ajuste de volume no site; o visitante pode pausar a reprodução. As barras respondem ao áudio da própria demonstração, sem acesso ao microfone.
+O botão de som na barra superior do Mac da demonstração abre um controle de volume de 0 a 100%. Essa escala corresponde a `audio.volume` de 0 a 0,5: no máximo, metade do volume atual do aparelho. O ajuste inicial é 2% na escala, preservando o volume de reprodução de 1%. O volume escolhido continua ao trocar de faixa e pausar; o controle funciona também com toque e teclado. As barras respondem ao áudio da própria demonstração, sem acesso ao microfone.
 
 A apresentação começa no mini vídeo ilustrativo. A navegação também inclui as três músicas fornecidas, que podem ser selecionadas pelo botão Música ou pelo próximo do player.
 

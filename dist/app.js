@@ -7,7 +7,11 @@
   const sourceMusic = document.querySelector(".source-music");
   const audio = document.querySelector("#demo-audio");
   audio.preload = "none";
-  audio.volume = 0.01;
+  const volumeControl = document.querySelector(".menu-volume");
+  const volumeButton = document.querySelector("#music-volume-toggle");
+  const volumePanel = document.querySelector("#music-volume-panel");
+  const volumeSlider = document.querySelector("#music-volume");
+  const volumeValue = document.querySelector("#music-volume-value");
   const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
   const player = document.querySelector('[data-player="secondary"]');
   const trigger = player.querySelector(".player-trigger");
@@ -35,9 +39,45 @@
   let noticeTimer;
   let noticeIndex = 0;
   let pendingSeek = null;
-  let audioContext, analyser, spectrum, audioSource;
+  let audioContext, analyser, spectrum, audioSource, audioGain;
   let reactiveFrame;
   let playRequest = 0;
+
+  function setMusicVolume(value) {
+    const percent = Math.max(0, Math.min(100, Number(value) || 0));
+    audio.volume = percent / 200;
+    // O ganho também limita o som em navegadores que mantêm o volume nativo em 1.
+    if (audioGain) audioGain.gain.value = audio.volume > 0 ? Math.min(1, percent / 200 / audio.volume) : 0;
+    volumeSlider.value = percent;
+    volumeSlider.style.setProperty("--volume", `${percent}%`);
+    volumeSlider.setAttribute("aria-valuetext", `${percent}%`);
+    volumeValue.value = `${percent}%`;
+    volumeButton.classList.toggle("is-muted", percent === 0);
+  }
+  function setVolumeOpen(open, restoreFocus = false) {
+    volumePanel.hidden = !open;
+    volumeButton.setAttribute("aria-expanded", String(open));
+    volumeControl.closest(".mac-menubar").classList.toggle("volume-open", open);
+    if (open) volumeSlider.focus({ preventScroll: true });
+    else if (restoreFocus) volumeButton.focus({ preventScroll: true });
+  }
+  volumeButton.addEventListener("click", () => setVolumeOpen(volumePanel.hidden));
+  volumeSlider.addEventListener("input", () => setMusicVolume(volumeSlider.value));
+  volumeControl.addEventListener("keydown", event => {
+    if (event.key === "Escape" && !volumePanel.hidden) {
+      event.preventDefault();
+      setVolumeOpen(false, true);
+    }
+  });
+  volumeControl.addEventListener("focusout", () => {
+    requestAnimationFrame(() => {
+      if (!volumeControl.contains(document.activeElement)) setVolumeOpen(false);
+    });
+  });
+  document.addEventListener("pointerdown", event => {
+    if (!volumePanel.hidden && !volumeControl.contains(event.target)) setVolumeOpen(false);
+  });
+  setMusicVolume(volumeSlider.value);
 
   function safeUrl(value) {
     try {
@@ -186,7 +226,7 @@
   }
   function showNotice(manual = false) {
     if (sourceActive) { if (!manual) return; setSourceVisible(false); }
-    if (!manual && (heroNotch.matches(":hover") || heroNotch.contains(document.activeElement) || downloadDialog.open || settingsDialog?.open)) return;
+    if (!manual && (heroNotch.matches(":hover") || heroNotch.contains(document.activeElement) || !volumePanel.hidden || downloadDialog.open || settingsDialog?.open)) return;
     clearNotice();
     heroNotch.classList.remove("is-expanded");
     const notice = notices[noticeIndex++ % notices.length];
@@ -276,9 +316,12 @@
         analyser = audioContext.createAnalyser();
         analyser.fftSize = 256;
         analyser.smoothingTimeConstant = 0.72;
+        audioGain = audioContext.createGain();
         audioSource = audioContext.createMediaElementSource(audio);
         audioSource.connect(analyser);
-        analyser.connect(audioContext.destination);
+        analyser.connect(audioGain);
+        audioGain.connect(audioContext.destination);
+        setMusicVolume(volumeSlider.value);
         spectrum = new Uint8Array(analyser.frequencyBinCount);
       }
       audioContext.resume().catch(() => {});

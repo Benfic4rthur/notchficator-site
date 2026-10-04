@@ -52,7 +52,17 @@
         <div class="device-glow" aria-hidden="true"></div>
         <div class="mac-display">
           <div class="desktop-wallpaper" aria-hidden="true"></div>
-          <div class="mac-menubar" aria-hidden="true"><div><svg><use href="#i-apple"/></svg><b>Notas</b><span>Arquivo</span><span>Editar</span><span>Visualizar</span></div><div><span class="menu-wifi">◔</span><span class="menu-battery"></span><span>09:41</span></div></div>
+          <div class="mac-menubar"><div aria-hidden="true"><svg><use href="#i-apple"/></svg><b>Notas</b><span>Arquivo</span><span>Editar</span><span>Visualizar</span></div><div>
+            <div class="menu-volume">
+              <button id="music-volume-toggle" class="menu-volume-toggle" type="button" aria-label="Ajustar volume da música" aria-expanded="false" aria-controls="music-volume-panel" title="Volume da música"><svg aria-hidden="true"><use href="#i-volume"/></svg></button>
+              <div id="music-volume-panel" class="menu-volume-panel" role="region" aria-labelledby="music-volume-label" hidden>
+                <div class="menu-volume-heading"><label id="music-volume-label" for="music-volume">Volume da música</label><output id="music-volume-value" for="music-volume">2%</output></div>
+                <input id="music-volume" class="music-volume-slider" type="range" min="0" max="100" step="1" value="2" aria-describedby="music-volume-hint">
+                <p id="music-volume-hint">Até 50% do volume do aparelho.</p>
+              </div>
+            </div>
+            <span class="menu-wifi" aria-hidden="true">◔</span><span class="menu-battery" aria-hidden="true"></span><span aria-hidden="true">09:41</span>
+          </div></div>
           <div class="hero-notch notch-shell" data-player="hero">
             <div class="notch-topline">
               <button class="mini-preview" id="source-toggle" aria-label="Ver a demonstração da janela de origem"><video class="demo-video" muted loop playsinline autoplay preload="auto" poster="assets/coast.jpg"><source src="assets/notch-demo.mp4" type="video/mp4"></video><img class="mini-cover" src="assets/cover-tide.svg" alt="Capa ilustrativa da faixa" hidden><span class="preview-return"><svg><use href="#i-arrow"/></svg></span></button>
@@ -192,7 +202,7 @@
             <div class="track-row"><img src="assets/coast.jpg" width="54" height="54" alt="Paisagem do vídeo ilustrativo"><div><strong>Entre montanhas e mar</strong><span>Vídeo de demonstração</span></div></div>
             <label class="sr-only" for="demo-progress">Progresso da demonstração</label><input id="demo-progress" class="seek-slider" type="range" min="0" max="8" step="0.1" value="0">
             <div class="time-row"><span class="elapsed">0:00</span><span class="duration">0:08</span></div>
-            <div class="player-controls" aria-label="Reprodução com volume fixo em 1%"><button class="previous-track" aria-label="Faixa anterior da demonstração"><svg><use href="#i-back"/></svg></button><button class="play-toggle player-play" aria-label="Pausar demonstração"><svg><use href="#i-pause"/></svg></button><button class="next-track" aria-label="Próxima faixa da demonstração"><svg><use href="#i-next"/></svg></button></div>
+            <div class="player-controls" aria-label="Controles de reprodução"><button class="previous-track" aria-label="Faixa anterior da demonstração"><svg><use href="#i-back"/></svg></button><button class="play-toggle player-play" aria-label="Pausar demonstração"><svg><use href="#i-pause"/></svg></button><button class="next-track" aria-label="Próxima faixa da demonstração"><svg><use href="#i-next"/></svg></button></div>
           </div>
         </div>
         <div class="hover-hint"><svg><use href="#i-mouse"/></svg><span class="desktop-hint">Passe o mouse no notch</span><span class="touch-hint">Toque no notch</span></div>
