@@ -386,7 +386,7 @@
   const installationCommand = window.NOTCHFICATOR_CONFIG?.installationCommand?.trim();
   if (installationCommand) {
     document.querySelector(".installation-command").hidden = false;
-    document.querySelector("#installation-release-description").textContent = "Use o comando abaixo para liberar a cópia do Notchficator baixada desta página.";
+    document.querySelector("#installation-release-description").textContent = "Este comando remove a marca de quarentena do Notchficator na pasta Aplicativos, permitindo a primeira abertura desta versão sem assinatura.";
     document.querySelector("#installation-command-text").textContent = installationCommand;
     document.querySelector("#copy-installation-command").addEventListener("click", async () => {
       const status = document.querySelector("#installation-copy-status");

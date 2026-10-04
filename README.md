@@ -14,7 +14,7 @@ Enquanto o endereço estiver vazio, os botões abrem uma mensagem informando que
 
 ## Instalação
 
-A seção de download inclui instruções expansíveis e informa que esta versão é de um desenvolvedor independente e ainda não tem assinatura da Apple. Quando o comando real de instalação for fornecido e validado, preencha `installationCommand` em `dist/config.js`; ele será exibido como texto com um botão para copiar. O site não executa comandos.
+A seção de download inclui instruções expansíveis e informa que esta versão é de um desenvolvedor independente e ainda não tem assinatura da Apple. O comando fornecido pelo desenvolvedor já está em `installationCommand` em `dist/config.js` e aparece com um botão para copiar. A página orienta mover o app para Aplicativos, executar o comando no Terminal e informar a senha de administrador quando solicitada. O comando remove a marca de quarentena somente de `/Applications/Notchficator.app`. O site exibe e copia o comando como texto; não o executa.
 
 ## Hospedagem
 
