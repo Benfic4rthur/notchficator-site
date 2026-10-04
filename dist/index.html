@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101212">
+  <meta name="description" content="Seu vídeo continua. Seu trabalho também. O Notchficator leva mini vídeos, música, controles e pequenos avisos ao notch do seu Mac.">
+  <title>Notchficator — Seu vídeo continua. Seu trabalho também.</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/notchficator-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-apple" viewBox="0 0 24 24"><path d="M16.6 12.8c0-2 1.6-3.1 1.7-3.2-1-1.5-2.5-1.7-3.1-1.7-1.3-.2-2.6.8-3.2.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.8.8-3.5 2-1.5 2.5-.4 6.3 1 8.3.7 1 1.5 2.1 2.5 2 1-.1 1.4-.7 2.7-.7s1.6.7 2.8.7c1.1 0 1.8-1 2.5-2 .8-1.2 1.2-2.4 1.2-2.5-.1 0-2.2-.9-2.2-2.9ZM14.6 6.6c.6-.8 1.1-1.8 1-2.9-1 .1-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.8 1 .1 2.1-.5 2.8-1.4Z" fill="currentColor"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" stroke-width="4"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M5 6v12m14-12-9 6 9 6Z" fill="currentColor"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M19 6v12M5 6l9 6-9 6Z" fill="currentColor"/></symbol>
+    <symbol id="i-media" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="m10 9 5 3-5 3Z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-control" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5" fill="#101212"/><circle cx="15" cy="17" r="2.5" fill="#101212"/></symbol>
+    <symbol id="i-notice" viewBox="0 0 24 24"><path d="M7 10a5 5 0 0 1 10 0c0 6 3 6 3 8H4c0-2 3-2 3-8Zm3 11h4M12 3v2"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M11 4 6 8H3v8h3l5 4V4Zm4 4a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="i-brightness" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2" y="6" width="18" height="12" rx="3"/><path d="M22 10v4m-11-6-3 5h5l-3 4"/></symbol>
+    <symbol id="i-airpods" viewBox="0 0 24 24"><path d="M7 4C4 4 3 6 3 8s1 3 3 3h1v8a1.5 1.5 0 0 0 3 0V8c0-3-1-4-3-4Zm10 0c3 0 4 2 4 4s-1 3-3 3h-1v8a1.5 1.5 0 0 1-3 0V8c0-3 1-4 3-4Z" fill="currentColor" stroke="none"/><path d="M6 6v3m12-3v3" stroke="#434843" stroke-width="1.5"/></symbol>
+    <symbol id="i-headphones" viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="12" width="4" height="8" rx="2"/><rect x="17" y="12" width="4" height="8" rx="2"/></symbol>
+    <symbol id="i-focus" viewBox="0 0 24 24"><path d="M20 14a9 9 0 0 1-10-10A9 9 0 1 0 20 14Z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-mouse" viewBox="0 0 24 24"><path d="m6 3 12 11-6 1-3 6L6 3Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  </svg>
+  <header class="site-header shell">
+    <a class="brand" href="#" aria-label="Notchficator, início"><img src="assets/notchficator-icon.png" width="40" height="40" alt=""><span>Notchficator</span></a>
+    <a class="download-button header-download" data-download href="#download"><span>Baixar para Mac</span><svg><use href="#i-arrow"/></svg></a>
+  </header>
+  <main id="conteudo">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="eyebrow"><span class="status-dot"></span> UM NOVO ESPAÇO NO SEU MAC</div>
+      <h1 id="hero-title">Seu vídeo continua.<br><span>Seu trabalho também.</span></h1>
+      <p class="hero-description">Acompanhe o vídeo no notch enquanto usa outro app.<br class="desktop-break"> Até com o navegador minimizado, em fontes compatíveis.</p>
+      <div class="hero-actions"><a class="download-button primary-download" data-download href="#download"><svg class="apple-icon"><use href="#i-apple"/></svg>Baixar para Mac</a><a class="quiet-link" href="#em-um-gesto">Veja em ação <svg><use href="#i-down"/></svg></a></div>
+      <div class="hero-product" id="demonstracao">
+        <div class="device-glow" aria-hidden="true"></div>
+        <div class="mac-display">
+          <div class="desktop-wallpaper" aria-hidden="true"></div>
+          <div class="mac-menubar" aria-hidden="true"><div><svg><use href="#i-apple"/></svg><b>Notas</b><span>Arquivo</span><span>Editar</span><span>Visualizar</span></div><div><span class="menu-wifi">◔</span><span class="menu-battery"></span><span>09:41</span></div></div>
+          <div class="hero-notch notch-shell" data-player="hero">
+            <div class="notch-topline">
+              <button class="mini-preview" id="source-toggle" aria-label="Ver a demonstração da janela de origem"><video class="demo-video" muted loop playsinline autoplay preload="auto" poster="assets/coast.jpg"><source src="assets/notch-demo.mp4" type="video/mp4"></video><img class="mini-cover" src="assets/cover-tide.svg" alt="Capa ilustrativa da faixa" hidden><span class="preview-return"><svg><use href="#i-arrow"/></svg></span></button>
+              <span class="physical-notch" aria-hidden="true"><span class="camera-dot"></span></span>
+              <div class="audio-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="hero-player-details"><div class="hero-track"><strong>Entre montanhas e mar</strong><span>Vídeo de demonstração</span></div><div class="progress-track"><span></span></div><div class="hero-player-bottom"><span class="elapsed">0:00</span><div class="hero-transport"><button class="previous-track" aria-label="Faixa anterior da demonstração"><svg><use href="#i-back"/></svg></button><button class="play-toggle" aria-label="Pausar demonstração"><svg><use href="#i-pause"/></svg></button><button class="next-track" aria-label="Próxima faixa da demonstração"><svg><use href="#i-next"/></svg></button></div><span class="duration">0:08</span></div></div>
+            <div class="notch-notice-content" aria-hidden="true"><svg class="notice-icon"><use href="#i-volume"/></svg><div class="notice-copy"><strong>Volume</strong><span class="notice-description"></span></div><span class="notice-value">65%</span><div class="notice-level"><span></span></div></div>
+          </div>
+          <div class="notes-window" aria-hidden="true">
+            <div class="window-topbar"><div class="traffic-lights"><i></i><i></i><i></i></div><span>Um pouco de espaço para criar</span><span class="window-more">···</span></div>
+            <div class="notes-sidebar"><span class="sidebar-label">SUAS IDEIAS</span><div class="sidebar-item active">O próximo capítulo<span>Hoje · Uma ideia de cada vez</span></div><div class="sidebar-item">Coisas que inspiram<span>Ontem · Para guardar</span></div><div class="sidebar-item">Sem pressa<span>Segunda · Notas do dia</span></div><div class="sidebar-bottom">3 notas</div></div>
+            <div class="note-content"><span class="note-date">Hoje, 09:41</span><h3>O próximo capítulo.</h3><p>Uma ideia de cada vez.<br>Um pouco de espaço para criar.</p><div class="note-task"><span class="task-check">✓</span> Encontrar uma nova perspectiva</div><div class="note-task"><span class="task-circle"></span> Deixar as ideias acontecerem</div><div class="note-task"><span class="task-circle"></span> Fazer algo que vale a pena</div><span class="note-caret" aria-hidden="true"></span></div>
+          </div>
+          <div class="source-window" hidden>
+            <div class="window-topbar"><div class="traffic-lights"><i></i><i></i><i></i></div><span>Entre montanhas e mar</span><button id="return-to-work" aria-label="Voltar à demonstração do trabalho"><svg><use href="#i-close"/></svg></button></div>
+            <video class="demo-video source-video" muted loop playsinline preload="metadata" poster="assets/coast.jpg"><source src="assets/notch-demo.mp4" type="video/mp4"></video>
+            <div class="source-music" hidden><img src="assets/cover-tide.svg" width="130" height="130" alt="Capa ilustrativa"><strong>Maré calma</strong><span>Música de demonstração</span></div>
+            <button class="work-button" id="work-button">Voltar ao trabalho <svg><use href="#i-arrow"/></svg></button>
+          </div>
+          <div class="desktop-status"><span class="status-dot"></span><span id="desktop-status-text">Seu vídeo, em segundo plano.</span></div>
+          <div class="mac-dock" aria-hidden="true"><i class="dock-finder">☺</i><i class="dock-notes"></i><i class="dock-browser">◉</i><span></span><img src="assets/notchficator-icon.png" alt="" width="35" height="35"></div>
+        </div>
+        <div class="mac-base" aria-hidden="true"><div></div></div>
+      </div>
+      <div class="demo-caption"><span>Demonstração ilustrativa</span><span class="caption-separator">·</span><span>Clique na prévia para ver a origem</span></div>
+      <div class="demo-options" aria-label="Escolha uma demonstração"><button class="demo-option active" data-demo="video" aria-pressed="true">Vídeo</button><button class="demo-option" data-demo="music" aria-pressed="false">Música</button><button class="demo-option" data-demo="notices" aria-pressed="false">Avisos</button></div>
+    </section>
+    <section class="interaction-section shell" id="em-um-gesto" aria-labelledby="interaction-title">
+      <div class="interaction-copy"><div class="eyebrow">PEQUENO NO ESPAÇO. PRESENTE NO DIA.</div><h2 id="interaction-title">Discreto. Até você<br>precisar.</h2><p>Passe o mouse e o player se abre.<br>Título, progresso e controles à mão.</p><p class="source-explanation">Um clique na prévia leva você de volta ao vídeo.</p></div>
+      <div class="interaction-demo">
+        <div class="demo-screen-edge" aria-hidden="true"></div>
+        <div class="interactive-notch notch-shell" data-player="secondary">
+          <button class="player-trigger" aria-expanded="false" aria-controls="expanded-player" aria-label="Expandir player de demonstração">
+            <span class="small-preview"><video class="demo-video" muted loop playsinline autoplay preload="metadata" poster="assets/coast.jpg"><source src="assets/notch-demo.mp4" type="video/mp4"></video><img class="mini-cover" src="assets/cover-tide.svg" alt="" hidden></span><span class="physical-notch" aria-hidden="true"><span class="camera-dot"></span></span><span class="audio-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          </button>
+          <div class="expanded-player" id="expanded-player" inert>
+            <div class="track-row"><img src="assets/coast.jpg" width="54" height="54" alt="Paisagem do vídeo ilustrativo"><div><strong>Entre montanhas e mar</strong><span>Vídeo de demonstração</span></div></div>
+            <label class="sr-only" for="demo-progress">Progresso da demonstração</label><input id="demo-progress" class="seek-slider" type="range" min="0" max="8" step="0.1" value="0">
+            <div class="time-row"><span class="elapsed">0:00</span><span class="duration">0:08</span></div>
+            <div class="player-controls" aria-label="Reprodução com volume fixo em 1%"><button class="previous-track" aria-label="Faixa anterior da demonstração"><svg><use href="#i-back"/></svg></button><button class="play-toggle player-play" aria-label="Pausar demonstração"><svg><use href="#i-pause"/></svg></button><button class="next-track" aria-label="Próxima faixa da demonstração"><svg><use href="#i-next"/></svg></button></div>
+          </div>
+        </div>
+        <div class="hover-hint"><svg><use href="#i-mouse"/></svg><span class="desktop-hint">Passe o mouse no notch</span><span class="touch-hint">Toque no notch</span></div>
+        <span class="interaction-caption">Demonstração ilustrativa</span>
+      </div>
+    </section>
+    <section class="features shell" aria-label="Mais pequenos momentos no notch">
+      <article><svg class="feature-icon"><use href="#i-media"/></svg><h3>Mídia</h3><p>Mini vídeo ou capa. Sua reprodução por perto, com barras de áudio opcionais.</p></article>
+      <article><svg class="feature-icon"><use href="#i-control"/></svg><h3>Controles</h3><p>Volume, mudo e brilho. Aparecem no notch só durante o ajuste.</p></article>
+      <article><svg class="feature-icon"><use href="#i-notice"/></svg><h3>Avisos</h3><p>Bateria, energia, Foco, fones Bluetooth e notificações visíveis do Mac.</p></article>
+    </section>
+  </main>
+  <footer class="site-footer shell" id="download">
+    <div class="footer-top"><div class="footer-brand-block"><a class="brand" href="#"><img src="assets/notchficator-icon.png" width="32" height="32" alt=""><span>Notchficator</span></a><p>Os pequenos momentos do Mac, no notch.</p></div><a class="download-button footer-download" data-download href="#download">Baixar para Mac <svg><use href="#i-arrow"/></svg></a></div>
+    <div class="requirements"><span>Apple Silicon</span><span>Notch físico</span><span>macOS 13 ou posterior</span></div>
+    <p class="compatibility-note">A compatibilidade varia conforme a fonte, o conteúdo e as permissões do macOS.</p>
+    <details class="compatibility-details"><summary>Compatibilidade e privacidade <span>+</span></summary><div class="compatibility-content"><p>O mini vídeo depende do navegador, player e conteúdo. A prévia de YouTube Music aberto como aplicativo pelo Safari ainda não está disponível.</p><p>As barras de áudio reais são opcionais, exigem macOS 14.2 ou posterior e autorização do macOS. A análise de áudio não usa o microfone, e a prévia de vídeo não salva gravações.</p><p>Os controles disponíveis dependem da fonte. Ao voltar à janela e à aba do vídeo, a mídia no notch se esconde; ao trocar de app ou minimizar a janela, ela reaparece. As notificações acompanham os banners visíveis que o macOS disponibiliza.</p><p>O Notchficator funciona pela barra de menus, mantém suas preferências e pode iniciar com o macOS.</p></div></details>
+    <div class="footer-bottom"><span>Notchficator.app</span><span>Feito para fazer parte do seu Mac.</span></div>
+  </footer>
+  <dialog id="download-dialog" aria-labelledby="download-title" aria-describedby="download-description"><button class="dialog-close" aria-label="Fechar"><svg><use href="#i-close"/></svg></button><img src="assets/notchficator-icon.png" width="64" height="64" alt=""><h2 id="download-title">Quase no seu notch.</h2><p id="download-description">O instalador ainda não está disponível nesta página.<br>O link de download será adicionado em breve.</p><button class="download-button dialog-done">Entendi</button></dialog>
+  <audio id="demo-audio" preload="none" hidden></audio>
+  <div class="sr-only" id="demo-announcement" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript-note">As demonstrações interativas precisam de JavaScript. O link do instalador ainda não foi disponibilizado.</p></noscript>
+</body>
+</html>

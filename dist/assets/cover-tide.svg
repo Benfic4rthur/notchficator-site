@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300" role="img" aria-labelledby="title desc">
+  <title id="title">Maré — capa ilustrativa</title>
+  <desc id="desc">Ondas abstratas e círculos verde-água sobre grafite.</desc>
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#1b3437"/>
+      <stop offset="1" stop-color="#0b1216"/>
+    </linearGradient>
+    <radialGradient id="light" cx="50%" cy="50%" r="50%">
+      <stop stop-color="#a8f5dd"/>
+      <stop offset=".7" stop-color="#51b9a5"/>
+      <stop offset="1" stop-color="#2d746f"/>
+    </radialGradient>
+    <linearGradient id="tide" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#78d7c2" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#11292d"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="300" fill="url(#sea)"/>
+  <circle cx="189" cy="111" r="74" fill="none" stroke="#71cbb6" stroke-opacity=".15"/>
+  <circle cx="189" cy="111" r="56" fill="none" stroke="#71cbb6" stroke-opacity=".25"/>
+  <circle cx="189" cy="111" r="37" fill="url(#light)"/>
+  <path d="M0 163C41 145 76 147 114 166S190 187 230 173S269 156 300 164V300H0Z" fill="url(#tide)"/>
+  <path d="M0 163C41 145 76 147 114 166S190 187 230 173S269 156 300 164" fill="none" stroke="#a4e4d0" stroke-opacity=".65"/>
+  <path d="M0 182C42 166 77 167 114 185S191 204 229 192S269 176 300 182" fill="none" stroke="#8ad7c3" stroke-opacity=".33"/>
+  <path d="M0 202C43 188 78 189 114 204S191 221 229 211S269 195 300 201" fill="none" stroke="#8ad7c3" stroke-opacity=".2"/>
+  <path d="M0 222C44 211 79 211 114 225S191 239 229 231S269 216 300 221" fill="none" stroke="#8ad7c3" stroke-opacity=".12"/>
+  <text x="24" y="39" fill="#d6ede7" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="400" letter-spacing="4">MARÉ</text>
+  <path d="M24 262h22" stroke="#8ad7c3" stroke-opacity=".7"/>
+</svg>

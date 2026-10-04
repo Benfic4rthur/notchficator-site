@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300" role="img" aria-labelledby="title desc">
+  <title id="title">Entardecer — capa ilustrativa</title>
+  <desc id="desc">Sol pêssego sobre um horizonte abstrato roxo e grafite.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#292134"/>
+      <stop offset=".55" stop-color="#785465"/>
+      <stop offset="1" stop-color="#bd8a83"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#f5d3b8"/>
+      <stop offset="1" stop-color="#e7a78e"/>
+    </linearGradient>
+    <linearGradient id="land" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#302a40"/>
+      <stop offset="1" stop-color="#11131b"/>
+    </linearGradient>
+    <clipPath id="skyline"><rect width="300" height="190"/></clipPath>
+  </defs>
+  <rect width="300" height="300" fill="url(#sky)"/>
+  <g clip-path="url(#skyline)">
+    <circle cx="150" cy="158" r="61" fill="url(#sun)"/>
+    <circle cx="150" cy="158" r="81" fill="none" stroke="#f5d3b8" stroke-opacity=".15"/>
+    <circle cx="150" cy="158" r="97" fill="none" stroke="#f5d3b8" stroke-opacity=".08"/>
+  </g>
+  <path d="M0 190H300V300H0Z" fill="url(#land)"/>
+  <path d="M0 190H300" stroke="#efbfaa" stroke-opacity=".6"/>
+  <path d="M90 201H210M106 211H194M123 221H177" stroke="#dda995" stroke-opacity=".22"/>
+  <path d="M0 249C56 224 92 230 151 253S249 273 300 250V300H0Z" fill="#15151e"/>
+  <text x="24" y="39" fill="#f3dad1" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="400" letter-spacing="2.6">ENTARDECER</text>
+  <path d="M24 262h22" stroke="#dbaf9c" stroke-opacity=".7"/>
+</svg>
