@@ -10,6 +10,8 @@ Execute `npm run dev` e abra http://127.0.0.1:4173. Para conferir a sintaxe, exe
 
 Os botões usam o endereço real `https://github.com/Benfic4rthur/notchficator-Releases/releases/latest/download/Notchficator-Instalador.dmg`. O GitHub redireciona para o instalador da última release publicada. Cada nova release deve incluir o asset com o mesmo nome `Notchficator-Instalador.dmg`, além de eventuais arquivos com a versão no nome. A configuração fica em `dist/config.js`.
 
+A versão na prévia das configurações é consultada na API pública da última release ao carregar a página e, após um minuto, quando a prévia é reaberta. O número vem do tag da release, sem o prefixo `v`; se a consulta falhar, a página não mostra um número fixo desatualizado.
+
 ## Instalação
 
 A seção de download inclui instruções expansíveis e informa que esta versão é de um desenvolvedor independente e ainda não tem assinatura da Apple. O comando fornecido pelo desenvolvedor já está em `installationCommand` em `dist/config.js` e aparece com um botão para copiar. A página orienta mover o app para Aplicativos, executar o comando no Terminal e informar a senha de administrador quando solicitada. O comando remove a marca de quarentena somente de `/Applications/Notchficator.app`. O site exibe e copia o comando como texto; não o executa.

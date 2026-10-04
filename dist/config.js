@@ -4,6 +4,7 @@
 // Sem audioUrl, as faixas são identificadas como prévias ilustrativas sem áudio.
 window.NOTCHFICATOR_CONFIG = Object.freeze({
   downloadUrl: "https://github.com/Benfic4rthur/notchficator-Releases/releases/latest/download/Notchficator-Instalador.dmg",
+  releaseApiUrl: "https://api.github.com/repos/Benfic4rthur/notchficator-Releases/releases/latest",
   // Comando de instalação validado, exibido e copiado como texto. Nunca é executado pelo site.
   installationCommand: "sudo xattr -dr com.apple.quarantine /Applications/Notchficator.app",
   tracks: [

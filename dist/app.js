@@ -353,8 +353,41 @@
   manageFeatureVideo();
 
   if (settingsDialog) {
+    const versionLabel = settingsDialog.querySelector(".settings-version");
+    const releaseApiUrl = safeUrl(window.NOTCHFICATOR_CONFIG?.releaseApiUrl);
+    let releaseCheckedAt = 0;
+    let releaseRequest = null;
+    function refreshReleaseVersion() {
+      if (!releaseApiUrl || releaseRequest || (releaseCheckedAt && Date.now() - releaseCheckedAt < 60_000)) return;
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 7_000);
+      releaseRequest = (async () => {
+        try {
+          const response = await fetch(releaseApiUrl, { headers: { Accept: "application/vnd.github+json" }, signal: controller.signal });
+          if (!response.ok) throw new Error("Não foi possível consultar a release.");
+          const release = await response.json();
+          const version = typeof release.tag_name === "string"
+            ? release.tag_name.trim().match(/^v?(\d+(?:\.\d+){0,3}(?:[-+][\w.-]+)?)$/i)?.[1]
+            : null;
+          if (!version) throw new Error("A release não informa uma versão válida.");
+          versionLabel.textContent = version;
+          versionLabel.setAttribute("aria-label", `Versão ${version} da última release`);
+          versionLabel.title = "Versão da última release";
+          releaseCheckedAt = Date.now();
+        } catch {
+          const knownVersion = versionLabel.textContent.trim();
+          versionLabel.setAttribute("aria-label", knownVersion === "—" ? "Versão indisponível no momento" : `Versão ${knownVersion}, última consultada`);
+          versionLabel.title = knownVersion === "—" ? "Não foi possível consultar a versão agora" : "Não foi possível atualizar a versão agora";
+        } finally {
+          clearTimeout(timeout);
+          releaseRequest = null;
+        }
+      })();
+    }
+    refreshReleaseVersion();
     function openSettings() {
       if (settingsDialog.open) return;
+      refreshReleaseVersion();
       clearNotice();
       heroNotch.classList.remove("is-expanded");
       if (smallScreen.matches) settingsDialog.showModal();
