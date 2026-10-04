@@ -156,7 +156,7 @@
 @media(max-width:700px){.mac-dock{display:flex;left:50%;bottom:5px;gap:5px;z-index:6}.dock-settings{height:24px;width:24px}.dock-settings img{height:24px;width:24px}.settings-scroll{padding-right:21px}}
 
 /* Controle real de volume na barra do Mac da demonstração. */
-.mac-menubar.volume-open{z-index:13;background:transparent}
+.mac-menubar.volume-open{z-index:16;background:transparent}
 .menu-volume{position:relative}
 .menu-volume-toggle{display:grid;place-items:center;position:relative;width:28px;height:28px;padding:6px;border:0;border-radius:5px;background:transparent;color:inherit;transition:background .2s}
 .menu-volume-toggle:hover,.menu-volume-toggle[aria-expanded="true"]{background:#ffffff20}
