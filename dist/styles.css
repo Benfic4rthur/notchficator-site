@@ -176,3 +176,15 @@
 .music-volume-slider::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:#e4f4eb;box-shadow:0 1px 4px #0004}
 .music-volume-slider:focus-visible{outline-offset:2px;border-radius:3px}
 @media(max-width:700px){.menu-volume-toggle{width:24px;height:23px;padding:5px}.menu-volume-toggle svg{width:12px;height:12px}.menu-volume-panel{width:190px;right:-4px;padding:12px}.menu-volume-heading label{font-size:11px}.menu-volume-panel p{font-size:9px}}
+
+/* Assinatura, suporte e frase final do rodapé. */
+.footer-bottom{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:24px;color:#929d97}
+.footer-signature{display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+.footer-signature strong{color:var(--text);font-size:17px;font-weight:650;letter-spacing:-.04em}
+.footer-signature span{color:#8f9b96;font-size:12px}
+.footer-support,.footer-closing{margin:0;font-size:11px;line-height:1.5}
+.footer-support{justify-self:center;white-space:nowrap}
+.footer-support a{color:#bdcfc5;text-decoration:underline;text-decoration-color:#60776a;text-underline-offset:3px;transition:color .2s}
+.footer-support a:hover{color:var(--accent)}
+.footer-closing{justify-self:end;text-align:right}
+@media(max-width:700px){.footer-bottom{grid-template-columns:1fr;justify-items:center;gap:9px;text-align:center;padding:22px 0 25px}.footer-signature{justify-content:center}.footer-support,.footer-closing{justify-self:center;text-align:center}}
