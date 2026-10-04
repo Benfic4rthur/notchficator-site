@@ -354,6 +354,8 @@
 
   if (settingsDialog) {
     const versionLabel = settingsDialog.querySelector(".settings-version");
+    const headerVersion = document.querySelector("#header-version");
+    const headerBrand = document.querySelector(".site-header .brand");
     const releaseApiUrl = safeUrl(window.NOTCHFICATOR_CONFIG?.releaseApiUrl);
     let releaseCheckedAt = 0;
     let releaseRequest = null;
@@ -373,6 +375,12 @@
           versionLabel.textContent = version;
           versionLabel.setAttribute("aria-label", `Versão ${version} da última release`);
           versionLabel.title = "Versão da última release";
+          if (headerVersion) {
+            headerVersion.textContent = `v${version}`;
+            headerVersion.hidden = false;
+            headerVersion.title = "Versão da última release";
+          }
+          if (headerBrand) headerBrand.setAttribute("aria-label", `Notchficator versão ${version}, início`);
           releaseCheckedAt = Date.now();
         } catch {
           const knownVersion = versionLabel.textContent.trim();
@@ -472,6 +480,44 @@
   }
 
   const downloadUrl = safeUrl(window.NOTCHFICATOR_CONFIG?.downloadUrl);
+  const releasesApiUrl = safeUrl(window.NOTCHFICATOR_CONFIG?.releasesApiUrl);
+  const downloadCount = document.querySelector("#download-count");
+  if (releasesApiUrl && downloadCount) {
+    (async () => {
+      let total = 0;
+      let page = 1;
+      try {
+        while (true) {
+          const url = new URL(releasesApiUrl);
+          url.searchParams.set("per_page", "100");
+          url.searchParams.set("page", String(page));
+          const response = await fetch(url, { headers: { Accept: "application/vnd.github+json" } });
+          if (!response.ok) throw new Error("Não foi possível consultar os downloads.");
+          const releases = await response.json();
+          if (!Array.isArray(releases)) throw new Error("Lista de releases inválida.");
+          for (const release of releases) {
+            if (release.draft) continue;
+            if (!Array.isArray(release.assets)) throw new Error("Lista de instaladores inválida.");
+            for (const asset of release.assets) {
+              if (!/^Notchficator.*\.dmg$/i.test(asset.name)) continue;
+              if (!Number.isSafeInteger(asset.download_count) || asset.download_count < 0) throw new Error("Contagem de downloads inválida.");
+              total += asset.download_count;
+            }
+          }
+          if (releases.length < 100) break;
+          page += 1;
+        }
+        const formatted = new Intl.NumberFormat("pt-BR").format(total);
+        downloadCount.querySelector("#download-count-number").textContent = formatted;
+        downloadCount.querySelector("#download-count-label").textContent = total === 1 ? "download" : "downloads";
+        downloadCount.setAttribute("aria-label", `${formatted} downloads dos instaladores em todas as versões publicadas`);
+        downloadCount.title = "Total de downloads dos instaladores em todas as versões publicadas";
+        downloadCount.hidden = false;
+      } catch {
+        downloadCount.hidden = true;
+      }
+    })();
+  }
   document.querySelectorAll("[data-download]").forEach(link => {
     if (downloadUrl) {
       link.href = downloadUrl;

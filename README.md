@@ -10,7 +10,9 @@ Execute `npm run dev` e abra http://127.0.0.1:4173. Para conferir a sintaxe, exe
 
 Os botões usam o endereço real `https://github.com/Benfic4rthur/notchficator-Releases/releases/latest/download/Notchficator-Instalador.dmg`. O GitHub redireciona para o instalador da última release publicada. Cada nova release deve incluir o asset com o mesmo nome `Notchficator-Instalador.dmg`, além de eventuais arquivos com a versão no nome. A configuração fica em `dist/config.js`.
 
-A versão na prévia das configurações é consultada na API pública da última release ao carregar a página e, após um minuto, quando a prévia é reaberta. O número vem do tag da release, sem o prefixo `v`; se a consulta falhar, a página não mostra um número fixo desatualizado.
+A versão ao lado da marca no cabeçalho e na prévia das configurações é consultada na API pública da última release ao carregar a página e, após um minuto, quando a prévia é reaberta. O número vem do tag da release; o cabeçalho exibe o prefixo `v`. Se a consulta falhar, a página não mostra um número fixo desatualizado.
+
+O contador sob o botão de download do rodapé soma `download_count` dos instaladores `.dmg` de todas as releases públicas, inclusive pré-releases. Ele representa downloads dos arquivos, não pessoas ou instalações únicas. A página consulta todas as páginas da API de releases; se a consulta falhar, oculta o contador para não exibir um total incompleto.
 
 ## Instalação
 
@@ -24,7 +26,9 @@ DNS: quatro registros A para `@`: `185.199.108.153`, `185.199.109.153`, `185.199
 
 ## Prévia de compartilhamento
 
-O HTML inclui Open Graph e Twitter Card estáticos, com título, descrição, URL canônica e uma imagem horizontal de 1200 × 630 pixels. A arte usa o ícone oficial e a mesma reconstrução do Mac da página, identificada como demonstração ilustrativa. O arquivo publicado é `dist/assets/notchficator-share-v1.png`; o layout editável fica em `scripts/share-card.html`. Para gerar novamente, abra esse HTML em um navegador com viewport 1200 × 630, aguarde as imagens e capture somente essa área em PNG. Use um novo nome de arquivo e atualize as tags de imagem quando substituir a arte, pois serviços de compartilhamento podem manter a prévia anterior em cache.
+O HTML inclui Open Graph e Twitter Card estáticos, com título, descrição, URL canônica e uma imagem horizontal de 1200 × 630 pixels. A arte usa o ícone oficial e a mesma reconstrução do Mac da página, identificada como demonstração ilustrativa. O arquivo publicado é `dist/assets/notchficator-share-v2.png`; o layout editável fica em `scripts/share-card.html`. Para gerar novamente, abra esse HTML em um navegador com viewport 1200 × 630, aguarde as imagens e capture somente essa área em PNG. Use um novo nome de arquivo e atualize as tags de imagem quando substituir a arte, pois serviços de compartilhamento podem manter a prévia anterior em cache.
+
+A carcaça `dist/assets/macbook-chassis.png` foi criada com a ferramenta integrada de imagem a partir da referência aprovada pelo usuário. O prompt está em `scripts/macbook-chassis-prompt.txt`. A tela continua sendo HTML interativo, posicionada proporcionalmente dentro da imagem; o site e a arte de compartilhamento usam o mesmo asset.
 
 ## Demonstrações
 
