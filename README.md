@@ -29,3 +29,7 @@ Mountain Pulse, Sunlit Sway e Morning Ripples foram integradas com suas capas or
 O volume das músicas fica fixo em 1% do volume atual do aparelho. Não há ajuste de volume no site; o visitante pode pausar a reprodução. As barras respondem ao áudio da própria demonstração, sem acesso ao microfone.
 
 A apresentação começa no mini vídeo ilustrativo. A navegação também inclui as três músicas fornecidas, que podem ser selecionadas pelo botão Música ou pelo próximo do player.
+
+## Repositório
+
+Fonte completa em https://github.com/Benfic4rthur/notchficator-site. Na hospedagem escolhida, publique o diretório `dist/`. O projeto não exige instalação de dependências para servir a página. O domínio Notchficator.app pode ser conectado nessa hospedagem pelo proprietário.

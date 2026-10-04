@@ -2,6 +2,7 @@
   "use strict";
   const videos = [...document.querySelectorAll(".demo-video")];
   const primaryVideo = videos[0];
+  const featureVideo = document.querySelector(".feature-video");
   const sourceVideo = document.querySelector(".source-video");
   const sourceMusic = document.querySelector(".source-music");
   const audio = document.querySelector("#demo-audio");
@@ -102,7 +103,7 @@
     if (isMusic()) {
       if (hasAudio()) {
         if (audio.readyState > 0) audio.currentTime = bounded;
-        else { pendingSeek = bounded; audio.load(); }
+        else { pendingSeek = bounded; if (audio.networkState !== HTMLMediaElement.NETWORK_LOADING) audio.load(); }
       } else illustrationTime = bounded;
     } else videos.forEach(video => { if (video.readyState > 0) video.currentTime = bounded; });
     syncTime();
@@ -234,18 +235,21 @@
   primaryVideo.addEventListener("loadedmetadata", syncTime);
   audio.addEventListener("timeupdate", syncTime);
   audio.addEventListener("loadedmetadata", () => {
+    const resumeAfterSeek = pendingSeek !== null && playing && audioUnlocked;
     if (pendingSeek !== null) { audio.currentTime = Math.min(audio.duration, pendingSeek); pendingSeek = null; }
     syncTime();
+    if (resumeAfterSeek) setPlaying(true);
   });
   audio.addEventListener("ended", () => selectTrack(trackIndex >= tracks.length - 1 ? 1 : trackIndex + 1));
   audio.addEventListener("error", () => {
     if (hasAudio()) { setPlaying(false); announcement.textContent = "Não foi possível carregar esta música."; }
   });
   primaryVideo.addEventListener("error", () => { if (!isMusic()) { setPlaying(false); document.querySelector("#desktop-status-text").textContent = "Prévia ilustrativa do notch."; } });
-  motionPreference.addEventListener("change", event => { if (event.matches) setPlaying(false); else if (!hasAudio()) setPlaying(true); });
+  motionPreference.addEventListener("change", event => { if (event.matches) setPlaying(false); else if (!hasAudio()) setPlaying(true); manageFeatureVideo(); });
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) { videos.forEach(video => video.pause()); audio.pause(); stopAudioAnalysis(); }
     else if (playing) setPlaying(true);
+    manageFeatureVideo();
   });
   setInterval(() => {
     if (isMusic() && !hasAudio() && playing && !document.hidden) { illustrationTime = (illustrationTime + 0.25) % mediaDuration(); syncTime(); }
@@ -292,6 +296,15 @@
       reactiveFrame = requestAnimationFrame(draw);
     } catch { stopAudioAnalysis(); }
   }
+
+  function manageFeatureVideo() {
+    if (!featureVideo) return;
+    featureVideo.autoplay = false;
+    if (motionPreference.matches || document.hidden) featureVideo.pause();
+    else featureVideo.play().catch(() => {});
+  }
+  manageFeatureVideo();
+
   const downloadUrl = safeUrl(window.NOTCHFICATOR_CONFIG?.downloadUrl);
   document.querySelectorAll("[data-download]").forEach(link => {
     if (downloadUrl) {
