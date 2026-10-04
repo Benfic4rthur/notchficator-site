@@ -168,12 +168,14 @@
     { icon:"airpods", title:"AirPods Pro", description:"Conectado", value:"", level:null, layout:"device" },
     { icon:"airpods", title:"AirPods Pro", description:"Desconectado", value:"", level:null, layout:"device" },
     { icon:"brightness", title:"Brilho", description:"Ajuste no notch", value:"80%", level:80 },
-    { icon:"battery", title:"Bateria carregando", description:"Conectado à energia", value:"84%", level:null },
-    { icon:"focus", title:"Foco ativado", description:"Hora de se concentrar", value:"", level:null }
+    { icon:"battery-level", title:"Bateria", description:"Alimentação desconectada", value:"80%", level:null, layout:"battery" },
+    { icon:"lightning", title:"Bateria", description:"Alimentação conectada", value:"80%", level:null, layout:"battery" },
+    { icon:"focus-on", title:"Foco", description:"Ativado", value:"On", level:null, layout:"focus" },
+    { icon:"focus", title:"Foco", description:"Desativado", value:"Off", level:null, layout:"focus" }
   ];
   function clearNotice() {
     clearTimeout(noticeTimer);
-    heroNotch.classList.remove("showing-notice", "device-notice");
+    heroNotch.classList.remove("showing-notice", "device-notice", "focus-notice", "battery-notice");
     const button = document.querySelector('[data-demo="notices"]');
     button.classList.remove("active");
     button.setAttribute("aria-pressed", "false");
@@ -185,6 +187,8 @@
     heroNotch.classList.remove("is-expanded");
     const notice = notices[noticeIndex++ % notices.length];
     heroNotch.classList.toggle("device-notice", notice.layout === "device");
+    heroNotch.classList.toggle("focus-notice", notice.layout === "focus");
+    heroNotch.classList.toggle("battery-notice", notice.layout === "battery");
     const content = document.querySelector(".notch-notice-content");
     content.querySelector("use").setAttribute("href", `#i-${notice.icon}`);
     content.querySelector("strong").textContent = notice.title;
@@ -192,6 +196,11 @@
     content.querySelector(".notice-value").textContent = notice.value;
     content.querySelector(".notice-level").hidden = notice.level === null;
     content.querySelector(".notice-level > span").style.width = `${notice.level ?? 0}%`;
+    const row = content.querySelector(".focus-media-row");
+    row.querySelector("img").src = currentTrack().cover;
+    row.querySelector("strong").textContent = currentTrack().title;
+    row.querySelector("span").textContent = `${playing ? "Reproduzindo" : "Pausado"} · Demonstração`;
+    row.querySelector("use").setAttribute("href", playing ? "#i-pause" : "#i-play");
     heroNotch.classList.add("showing-notice");
     const button = document.querySelector('[data-demo="notices"]');
     button.classList.add("active");
