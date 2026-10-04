@@ -42,7 +42,7 @@ A apresentação começa no mini vídeo ilustrativo. A navegação também inclu
 
 ## Aviso de inspeção
 
-`dist/inspection-guard.js` intercepta atalhos comuns de ferramentas de desenvolvedor, código-fonte e salvamento da página, além do menu de contexto fora de links, campos, controles e do comando de instalação. Também impede arrastar imagens e vídeos. A tentativa mostra um aviso dispensável com a frase solicitada; a mesma mensagem aparece no console. Player, volume, rolagem, seleção de texto e cópia do comando continuam disponíveis. O aviso não toma o foco e funciona dentro das configurações no celular.
+`dist/inspection-guard.js` intercepta atalhos comuns de ferramentas de desenvolvedor, código-fonte e salvamento da página, além do menu de contexto fora de links, campos, controles e do comando de instalação. Também impede arrastar imagens e vídeos. Somente os atalhos de DevTools mostram o aviso dispensável com a frase solicitada; os outros bloqueios são silenciosos. A mesma mensagem aparece no console. Player, volume, rolagem, seleção de texto e cópia do comando continuam disponíveis. O aviso fica oculto no uso normal, separado dos avisos do Mac da demonstração, não toma o foco e funciona dentro das configurações no celular.
 
 Esses bloqueios desencorajam inspeção casual. Não são uma barreira de segurança nem escondem o código público: menus do navegador, ferramentas externas ou JavaScript desativado podem contorná-los. Não há detecção por tamanho da janela, pausas de debugger, redirecionamentos ou fechamento forçado da página.
 

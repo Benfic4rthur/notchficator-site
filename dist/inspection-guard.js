@@ -48,13 +48,14 @@
   document.addEventListener("keydown", event => {
     if (event.defaultPrevented || event.isComposing) return;
     const key = event.key.toLowerCase();
-    const macTools = event.metaKey && event.altKey && ["i", "j", "c", "k", "u"].includes(key);
+    const macTools = event.metaKey && event.altKey && ["i", "j", "c", "k"].includes(key);
     const otherTools = event.ctrlKey && event.shiftKey && !event.altKey && ["i", "j", "c", "k"].includes(key);
     const pageAction = (event.ctrlKey || event.metaKey) && !event.altKey && !event.shiftKey && ["u", "s"].includes(key);
-    if (key === "f12" || macTools || otherTools || pageAction) {
+    const macSource = event.metaKey && event.altKey && key === "u";
+    if (key === "f12" || macTools || otherTools) {
       event.preventDefault();
       if (!event.repeat) showNotice();
-    }
+    } else if (pageAction || macSource) event.preventDefault();
   }, { capture: true });
 
   document.addEventListener("contextmenu", event => {
@@ -64,7 +65,6 @@
     const plainButton = target.closest("button") && !target.closest("img, video");
     if (usefulMenu || plainButton) return;
     event.preventDefault();
-    showNotice();
   });
 
   document.addEventListener("dragstart", event => {
