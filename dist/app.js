@@ -482,46 +482,75 @@
   const downloadUrl = safeUrl(window.NOTCHFICATOR_CONFIG?.downloadUrl);
   const releasesApiUrl = safeUrl(window.NOTCHFICATOR_CONFIG?.releasesApiUrl);
   const downloadCount = document.querySelector("#download-count");
+  let refreshDownloadCount = null;
   if (releasesApiUrl && downloadCount) {
-    (async () => {
-      let total = 0;
-      let page = 1;
-      try {
-        while (true) {
-          const url = new URL(releasesApiUrl);
-          url.searchParams.set("per_page", "100");
-          url.searchParams.set("page", String(page));
-          const response = await fetch(url, { headers: { Accept: "application/vnd.github+json" } });
-          if (!response.ok) throw new Error("Não foi possível consultar os downloads.");
-          const releases = await response.json();
-          if (!Array.isArray(releases)) throw new Error("Lista de releases inválida.");
-          for (const release of releases) {
-            if (release.draft) continue;
-            if (!Array.isArray(release.assets)) throw new Error("Lista de instaladores inválida.");
-            for (const asset of release.assets) {
-              if (!/^Notchficator.*\.dmg$/i.test(asset.name)) continue;
-              if (!Number.isSafeInteger(asset.download_count) || asset.download_count < 0) throw new Error("Contagem de downloads inválida.");
-              total += asset.download_count;
+    let downloadCountRequest = null;
+    let downloadCountCheckedAt = 0;
+
+    refreshDownloadCount = async ({ force = false } = {}) => {
+      if (downloadCountRequest) return downloadCountRequest;
+      if (!force && downloadCountCheckedAt && Date.now() - downloadCountCheckedAt < 60_000) return null;
+
+      downloadCountRequest = (async () => {
+        let total = 0;
+        let page = 1;
+        try {
+          while (true) {
+            const url = new URL(releasesApiUrl);
+            url.searchParams.set("per_page", "100");
+            url.searchParams.set("page", String(page));
+            const response = await fetch(url, {
+              cache: "no-store",
+              headers: { Accept: "application/vnd.github+json" }
+            });
+            if (!response.ok) throw new Error("Não foi possível consultar os downloads.");
+            const releases = await response.json();
+            if (!Array.isArray(releases)) throw new Error("Lista de releases inválida.");
+            for (const release of releases) {
+              if (release.draft) continue;
+              if (!Array.isArray(release.assets)) throw new Error("Lista de instaladores inválida.");
+              for (const asset of release.assets) {
+                if (!/^Notchficator.*\.dmg$/i.test(asset.name)) continue;
+                if (!Number.isSafeInteger(asset.download_count) || asset.download_count < 0) throw new Error("Contagem de downloads inválida.");
+                total += asset.download_count;
+              }
             }
+            if (releases.length < 100) break;
+            page += 1;
           }
-          if (releases.length < 100) break;
-          page += 1;
+          const formatted = new Intl.NumberFormat("pt-BR").format(total);
+          downloadCount.querySelector("#download-count-number").textContent = formatted;
+          downloadCount.querySelector("#download-count-label").textContent = total === 1 ? "download" : "downloads";
+          downloadCount.setAttribute("aria-label", `${formatted} downloads dos instaladores em todas as versões publicadas`);
+          downloadCount.title = "Total de downloads dos instaladores em todas as versões publicadas";
+          downloadCount.hidden = false;
+          downloadCountCheckedAt = Date.now();
+        } catch {
+          if (!downloadCount.querySelector("#download-count-number")?.textContent?.trim()) {
+            downloadCount.hidden = true;
+          }
+        } finally {
+          downloadCountRequest = null;
         }
-        const formatted = new Intl.NumberFormat("pt-BR").format(total);
-        downloadCount.querySelector("#download-count-number").textContent = formatted;
-        downloadCount.querySelector("#download-count-label").textContent = total === 1 ? "download" : "downloads";
-        downloadCount.setAttribute("aria-label", `${formatted} downloads dos instaladores em todas as versões publicadas`);
-        downloadCount.title = "Total de downloads dos instaladores em todas as versões publicadas";
-        downloadCount.hidden = false;
-      } catch {
-        downloadCount.hidden = true;
-      }
-    })();
+      })();
+
+      return downloadCountRequest;
+    };
+
+    void refreshDownloadCount({ force: true });
+    window.addEventListener("focus", () => { void refreshDownloadCount(); });
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") void refreshDownloadCount();
+    });
   }
   document.querySelectorAll("[data-download]").forEach(link => {
     if (downloadUrl) {
       link.href = downloadUrl;
       link.setAttribute("aria-label", "Baixar o instalador do Notchficator para Mac");
+      link.addEventListener("click", () => {
+        window.setTimeout(() => { void refreshDownloadCount?.({ force: true }); }, 15_000);
+        window.setTimeout(() => { void refreshDownloadCount?.({ force: true }); }, 60_000);
+      });
     } else {
       link.setAttribute("aria-haspopup", "dialog");
       link.addEventListener("click", event => { event.preventDefault(); lastDownloadTrigger = link; downloadDialog.showModal(); });
