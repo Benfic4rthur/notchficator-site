@@ -550,6 +550,7 @@
       link.addEventListener("click", () => {
         window.setTimeout(() => { void refreshDownloadCount?.({ force: true }); }, 15_000);
         window.setTimeout(() => { void refreshDownloadCount?.({ force: true }); }, 60_000);
+        window.setTimeout(() => { void refreshDownloadCount?.({ force: true }); }, 120_000);
       });
     } else {
       link.setAttribute("aria-haspopup", "dialog");
