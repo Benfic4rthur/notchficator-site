@@ -10,7 +10,7 @@ Execute `npm run dev` e abra http://127.0.0.1:4173. Para conferir a sintaxe, exe
 
 Os botões usam o endereço real `https://github.com/Benfic4rthur/notchficator-Releases/releases/latest/download/Notchficator-Instalador.dmg`. O GitHub redireciona para o instalador da última release publicada. Cada nova release deve incluir o asset com o mesmo nome `Notchficator-Instalador.dmg`, além de eventuais arquivos com a versão no nome. A configuração fica em `dist/config.js`.
 
-A versão ao lado da marca no cabeçalho e na prévia das configurações é consultada na API pública da última release ao carregar a página e, após um minuto, quando a prévia é reaberta. O número vem do tag da release; o cabeçalho exibe o prefixo `v`. Se a consulta falhar, a página não mostra um número fixo desatualizado.
+A versão ao lado da marca no cabeçalho e na prévia das configurações é consultada na API pública da última release ao carregar a página e, após um minuto, quando a prévia é reaberta. O número vem do tag da release; o cabeçalho exibe o prefixo `v` em uma etiqueta discreta, com a mesma apresentação dos outros produtos da ALLM4. Se a consulta falhar, a página não mostra um número fixo desatualizado.
 
 O contador sob o botão de download do rodapé soma `download_count` dos instaladores `.dmg` de todas as releases públicas, inclusive pré-releases. Ele representa downloads dos arquivos, não pessoas ou instalações únicas. A página consulta todas as páginas da API de releases; se a consulta falhar, oculta o contador para não exibir um total incompleto.
 

@@ -242,6 +242,6 @@
 }
 
 /* Versão da última release junto ao nome no cabeçalho. */
-.site-header .header-version{margin-left:-6px;align-self:center;color:#93a99d;font-size:10px;font-weight:500;letter-spacing:0;line-height:1;white-space:nowrap;font-variant-numeric:tabular-nums}
+.site-header .header-version{display:inline-flex;align-items:center;align-self:center;min-height:22px;padding:3px 7px;border:1px solid #83c5aa35;border-radius:4px;color:#9bc8b3;font:10px/1.25 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:0;white-space:nowrap;font-variant-numeric:tabular-nums}
 .site-header .header-version[hidden]{display:none}
-@media(max-width:700px){.site-header .header-version{margin-left:-4px;font-size:8px}}
+@media(max-width:700px){.site-header .header-version{min-height:21px;padding-inline:6px;font-size:9px}}
